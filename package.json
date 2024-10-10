@@ -1,0 +1,23 @@
+{
+  "name": "javascript-order",
+  "version": "1.0.0",
+  "description": "자바스크립트로 구현하는 주문 미션",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/develup-mission/javascript-order.git"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": "brgndyy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/develup-mission/javascript-order/issues"
+  },
+  "homepage": "https://github.com/develup-mission/javascript-order#readme"
+}
