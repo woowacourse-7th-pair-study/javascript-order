@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/develup-mission/javascript-order/issues"
   },
-  "homepage": "https://github.com/develup-mission/javascript-order#readme"
+  "homepage": "https://github.com/develup-mission/javascript-order#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
