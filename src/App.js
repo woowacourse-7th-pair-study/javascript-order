@@ -1,6 +1,5 @@
-import InputView from "./InputView";
-import Menu from "./Menu";
-import GetValidatedInput from "./GetValidatedInput";
+import Menu from "./Menu.js";
+import GetValidatedInput from "./GetValidatedInput.js";
 
 class App {
   #menu;

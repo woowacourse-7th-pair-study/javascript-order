@@ -8,6 +8,7 @@ export default class Menu {
     this.#side = MENU.side;
     this.#beverage = MENU.beverage;
   }
+
   has(menuName) {
     return (
       this.hasInCategory(this.#main, menuName) ||
@@ -20,5 +21,9 @@ export default class Menu {
     return category.some(({ name }) => {
       return name === menuName;
     });
+  }
+
+  isBeverage(menuName) {
+    return this.hasInCategory(this.#beverage, menuName);
   }
 }
