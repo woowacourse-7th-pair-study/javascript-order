@@ -1,4 +1,4 @@
-import validator from '../src/utils/validator.js';
+import validator, { isOverMinimumOrderPrice } from '../src/utils/validator.js';
 
 describe('Validator Test', () => {
   test.each([
@@ -33,5 +33,19 @@ describe('Validator Test', () => {
     const menusAndQuantities = input.split(',').map((element) => element.trim());
 
     expect(() => validator(menusAndQuantities)).not.toThrow();
+  });
+});
+
+describe('isOverMinimumOrderPrice 메소드 테스트', () => {
+  test('최소 주문 금액을 만족하지 못하면 에러를 발생한다.', () => {
+    const totalPrice = 29_000;
+    expect(() => isOverMinimumOrderPrice(totalPrice)).toThrow(
+      '[ERROR]: 최소 주문 금액을 만족하지 못했습니다.',
+    );
+  });
+
+  test('최소 주문 금액을 만족하면 에러가 발생하지 않는다.', () => {
+    const totalPrice = 31_000;
+    expect(() => isOverMinimumOrderPrice(totalPrice)).not.toThrow();
   });
 });

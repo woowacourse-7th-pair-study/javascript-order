@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import validator from '../utils/validator.js';
+import { INPUT_REGEX } from '../constants/constants.js';
 
 const InputView = {
   async readMenuAndQuantity() {
@@ -13,8 +14,10 @@ const InputView = {
       validator(menusAndQuantities);
 
       const orderInfo = menusAndQuantities.map((menuAndQuantity) => {
-        const { menu: parsedMenu, quantity } = menuAndQuantity.match(INPUT_REGEX).groups;
+        const { menu: parsedMenu, quantity: parsedQuantity } =
+          menuAndQuantity.match(INPUT_REGEX).groups;
         const menu = parsedMenu.trim();
+        const quantity = Number(parsedQuantity);
 
         return { menu, quantity };
       });

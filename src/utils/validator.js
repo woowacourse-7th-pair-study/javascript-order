@@ -44,6 +44,12 @@ const isOnlyDrink = (menusAndQuantities) => {
   }
 };
 
+export const isOverMinimumOrderPrice = (totalPrice) => {
+  if (totalPrice < 30_000) {
+    throw new Error('[ERROR]: 최소 주문 금액을 만족하지 못했습니다.');
+  }
+};
+
 const validator = (menusAndQuantities) => {
   menusAndQuantities.forEach((menuAndQuantity) => {
     isValidFormat(menuAndQuantity);
