@@ -51,3 +51,15 @@ export const validateOrders = (orders) => {
     throw new Error('[ERROR] 총 수량은 1개 이상, 10개 이하로 주문해야 합니다.');
   }
 };
+
+export const validateTotalPrice = (totalPrice) => {
+  if (totalPrice < 30_000) {
+    throw new Error('[ERROR] 최소 주문 금액은 30,000원 입니다.');
+  }
+};
+
+export const validateCategoryCount = (categoryCount) => {
+  if (categoryCount.main === 0 && categoryCount.side === 0) {
+    throw new Error('[ERROR] 음료만 주문하면 안됩니다. 양심 챙기세요.');
+  }
+};

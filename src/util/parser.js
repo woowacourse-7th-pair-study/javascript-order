@@ -23,3 +23,12 @@ export const getAllMenuName = () => {
 
 export const getInitialCategoryCount = () =>
   Object.fromEntries(Object.keys(ALL_MENU).map((key) => [key, 0]));
+
+export const getAllMenu = () => {
+  let allMenu = [];
+  Object.values(ALL_MENU).forEach((menus) => {
+    allMenu = allMenu.concat(menus);
+  });
+
+  return allMenu;
+};

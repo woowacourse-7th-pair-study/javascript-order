@@ -7,7 +7,7 @@ class App {
   async start() {
     const orders = await this.#getMenuAndQuantityInput();
     const machine = new POSMachine();
-    machine.updateCategoryCount(orders);
+    machine.processOrder(orders);
   }
 
   async #getMenuAndQuantityInput() {
