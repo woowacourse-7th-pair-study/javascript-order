@@ -1,11 +1,11 @@
-import { parseStringToArray } from './util/parser.js';
+import { parseStringToArray, parseStringToOrder } from './util/parser.js';
 import { validateInputForm } from './util/validator.js';
 import InputView from './View/InputView.js';
 
 class App {
   async start() {
-    const menuAndQuantity = await this.#getMenuAndQuantityInput();
-    console.log(menuAndQuantity);
+    const orders = await this.#getMenuAndQuantityInput();
+    console.log(orders);
   }
 
   async #getMenuAndQuantityInput() {
@@ -14,7 +14,8 @@ class App {
     const inputArray = parseStringToArray(input);
     validateInputForm(inputArray);
     // validate
-    return inputArray;
+    const orders = parseStringToOrder(inputArray);
+    return orders;
   }
 }
 
