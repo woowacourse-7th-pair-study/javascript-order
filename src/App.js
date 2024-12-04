@@ -1,11 +1,12 @@
+import POSMachine from './POSMachine.js';
 import { parseStringToArray, parseStringToOrder } from './util/parser.js';
-import { validateInputForm } from './util/validator.js';
+import { validateInputForm, validateOrders } from './util/validator.js';
 import InputView from './View/InputView.js';
 
 class App {
   async start() {
     const orders = await this.#getMenuAndQuantityInput();
-    console.log(orders);
+    const machine = new POSMachine();
   }
 
   async #getMenuAndQuantityInput() {
@@ -13,8 +14,10 @@ class App {
 
     const inputArray = parseStringToArray(input);
     validateInputForm(inputArray);
-    // validate
+
     const orders = parseStringToOrder(inputArray);
+    validateOrders(orders);
+
     return orders;
   }
 }
