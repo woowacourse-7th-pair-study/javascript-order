@@ -26,4 +26,18 @@ export default class Menu {
   isBeverage(menuName) {
     return this.hasInCategory(this.#beverage, menuName);
   }
+  getPriceByName(menuName) {
+    if (this.hasInCategory(this.#main, menuName)) {
+      return this.#getPriceInCategory(this.#main, menuName);
+    }
+    if (this.hasInCategory(this.#side, menuName)) {
+      return this.#getPriceInCategory(this.#side, menuName);
+    }
+    if (this.hasInCategory(this.#beverage, menuName)) {
+      return this.#getPriceInCategory(this.#beverage, menuName);
+    }
+  }
+  #getPriceInCategory(category, menuName) {
+    return category.find(({ name }) => name === menuName).price;
+  }
 }

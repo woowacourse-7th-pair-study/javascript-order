@@ -10,4 +10,8 @@ describe("menu 객체 테스트", () => {
     expect(menu.isBeverage("피자")).toBe(false);
     expect(menu.isBeverage("콜라")).toBe(true);
   });
+
+  test("알맞은 가격을 반환하는지 확인", () => {
+    expect(menu.getPriceByName("피자")).toBe(25000);
+  });
 });
