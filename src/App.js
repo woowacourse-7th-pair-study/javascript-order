@@ -1,13 +1,20 @@
+import { Console } from '@woowacourse/mission-utils';
 import POSMachine from './POSMachine.js';
 import { parseStringToArray, parseStringToOrder } from './util/parser.js';
 import { validateInputForm, validateOrders } from './util/validator.js';
 import InputView from './View/InputView.js';
+import OutputView from './View/OutputView.js';
 
 class App {
-  async start() {
-    const orders = await this.#getMenuAndQuantityInput();
-    const machine = new POSMachine();
-    machine.processOrder(orders);
+  async run() {
+    try {
+      const orders = await this.#getMenuAndQuantityInput();
+      const machine = new POSMachine();
+      const orderResult = machine.processOrder(orders);
+      OutputView.printReceipt(orderResult);
+    } catch (e) {
+      Console.print(e.message);
+    }
   }
 
   async #getMenuAndQuantityInput() {

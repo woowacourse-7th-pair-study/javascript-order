@@ -34,17 +34,13 @@ const expectLogContains = (received, expects) => {
 
 const runExceptions = async ({ inputs = [], expectedErrorMessage = [] }) => {
   // given
-  const logSpy = getLogSpy();
   mockQuestions([...inputs]);
 
   // when
   const app = new App();
-  await app.run();
 
   // then
-  expect(logSpy).toHaveBeenCalledWith(
-    expect.stringContaining(expectedErrorMessage)
-  );
+  await expect(app.run()).rejects.toThrow(expectedErrorMessage);
 };
 
 const run = async ({ inputs = [], expected = [] }) => {
@@ -68,7 +64,7 @@ describe('주문 테스트', () => {
   test('예외 테스트', async () => {
     await runExceptions({
       inputs: ['피망(2개), 콜라(3개)'],
-      expected: ['[ERROR]:'],
+      expectedErrorMessage: '[ERROR]:',
     });
   });
 
@@ -86,7 +82,7 @@ describe('주문 테스트', () => {
         '서비스 만두(5개)',
         '[최종 결제 금액]',
         '73,000원',
-      ]
+      ],
     ],
     [
       ['감자튀김(9개), 샐러드(8개), 콜라(8개), 오렌지 주스(9개)'],
@@ -100,7 +96,7 @@ describe('주문 테스트', () => {
         '배달비: 0원',
         '[최종 결제 금액]',
         '152,000원',
-      ]
+      ],
     ],
   ])('기능 테스트', async (inputs, expected) => {
     await run({

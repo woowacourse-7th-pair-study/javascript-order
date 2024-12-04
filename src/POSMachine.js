@@ -22,6 +22,13 @@ class POSMachine {
 
     const deliveryPrice = this.#getDeliveryPrice();
     const serviceCount = this.#getServiceCount();
+
+    return {
+      orders: this.#orders,
+      serviceCount,
+      deliveryPrice,
+      totalPrice: this.#totalPrice,
+    };
   }
 
   #updateCategoryCount() {
