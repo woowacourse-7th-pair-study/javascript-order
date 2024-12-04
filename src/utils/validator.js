@@ -1,4 +1,5 @@
 import { INPUT_REGEX, MENU_INFO } from '../constants/constants.js';
+import getMenuByName from './getMenuByName.js';
 
 const isValidFormat = (menuAndQuantity) => {
   if (!INPUT_REGEX.test(menuAndQuantity)) {
@@ -34,7 +35,7 @@ const isOnlyDrink = (menusAndQuantities) => {
   const isNotDrink = menusAndQuantities.every((menuAndQuantity) => {
     const { menu } = menuAndQuantity.match(INPUT_REGEX).groups;
 
-    const type = MENU_INFO.find((value) => value.menu === menu).type;
+    const type = getMenuByName(menu).type;
 
     return type === '음료';
   });

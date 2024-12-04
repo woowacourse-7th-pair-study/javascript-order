@@ -2,13 +2,13 @@ import { MENU_INFO } from '../constants/constants.js';
 import { isOverMinimumOrderPrice } from '../utils/validator.js';
 import InputView from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
+import getMenuByName from '../utils/getMenuByName.js';
 
 class Controller {
   async start() {
     const orderInfo = await InputView.readMenuAndQuantity();
 
     const orderList = this.#getOrderList(orderInfo);
-
     const totalPrice = this.#getTotalPrice(orderList);
 
     isOverMinimumOrderPrice(totalPrice);
@@ -22,7 +22,7 @@ class Controller {
   #getOrderList(orderInfo) {
     return orderInfo.map((order) => ({
       ...order,
-      price: MENU_INFO.find((menuInfo) => menuInfo.menu === order.menu).price * order.quantity,
+      price: getMenuByName(order.menu).price * order.quantity,
     }));
   }
 
@@ -41,9 +41,9 @@ class Controller {
     return orderList.reduce((serviceQuantity, order) => {
       const { menu, quantity } = order;
 
-      const menuInfo = MENU_INFO.find((menuInfo) => menuInfo.menu === menu);
+      const type = getMenuByName(menu).type;
 
-      if (menuInfo.type === '메인') serviceQuantity += quantity * 1;
+      if (type === '메인') serviceQuantity += quantity * 1;
 
       return serviceQuantity;
     }, 0);
