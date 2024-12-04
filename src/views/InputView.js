@@ -12,7 +12,14 @@ const InputView = {
 
       validator(menusAndQuantities);
 
-      return userInput;
+      const orderInfo = menusAndQuantities.map((menuAndQuantity) => {
+        const { menu: parsedMenu, quantity } = menuAndQuantity.match(INPUT_REGEX).groups;
+        const menu = parsedMenu.trim();
+
+        return { menu, quantity };
+      });
+
+      return orderInfo;
     } catch (error) {
       throw new Error(error.message);
     }
