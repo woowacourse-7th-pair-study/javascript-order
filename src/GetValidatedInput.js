@@ -1,24 +1,23 @@
 import { Console } from "@woowacourse/mission-utils";
 import { ERROR_MESSAGE } from "./constant/message.js";
-import InputView from "./InputView.js";
+import InputView from "./view/InputView.js";
 
 export default class GetValidatedInput {
   async menu(menu) {
-    try {
-      const input = await InputView.readMenuAsync();
-      const parsedInput = input.split(",").map((menuString) => {
-        // const regexp = \\
-        const [menuName, menuCountString] = menuString.split("(");
-        const menuCount = Number(menuCountString.replace("개)", ""));
+    // try {
+    const input = await InputView.readMenuAsync();
+    const parsedInput = input.split(",").map((menuString) => {
+      const [menuName, menuCountString] = menuString.split("(");
+      const menuCount = Number(menuCountString.trim().replace("개)", ""));
 
-        return { name: menuName, count: menuCount };
-      }); // ["피자(2개)", "감자튀김(1개)"]
-      this.#validateMenuInput(parsedInput, menu);
+      return { name: menuName.trim(), count: menuCount };
+    }); // ["피자(2개)", "감자튀김(1개)"]
+    this.#validateMenuInput(parsedInput, menu);
 
-      return parsedInput;
-    } catch (error) {
-      Console.print(error.message);
-    }
+    return parsedInput;
+    // } catch (error) {
+    // Console.print(error.message);
+    // }
   }
 
   #validateMenuInput(input, menu) {

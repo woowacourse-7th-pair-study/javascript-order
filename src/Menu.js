@@ -26,6 +26,11 @@ export default class Menu {
   isBeverage(menuName) {
     return this.hasInCategory(this.#beverage, menuName);
   }
+
+  isMain(menuName) {
+    return this.hasInCategory(this.#main, menuName);
+  }
+
   getPriceByName(menuName) {
     if (this.hasInCategory(this.#main, menuName)) {
       return this.#getPriceInCategory(this.#main, menuName);
