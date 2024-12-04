@@ -1,6 +1,8 @@
+import InputView from "./InputView";
+
 class App {
-  start() {
-    console.log("미션을 시작해주세요");
+  async start() {
+    const inputMenu = await InputView.readMenuAsync();
   }
 }
 
