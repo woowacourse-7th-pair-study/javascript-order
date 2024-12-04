@@ -1,4 +1,4 @@
-export const INPUT_REGEX = /^(?<menu>[ㄱ-ㅎ가-힣]+)\((?<quantity>[0-9]+)개\)$/;
+export const INPUT_REGEX = /^(?<menu>[ㄱ-ㅎ가-힣\s]+)\((?<quantity>[0-9]+)개\)$/;
 
 export const MENU_INFO = Object.freeze([
   { type: '메인', menu: '피자', price: 25_000 },
