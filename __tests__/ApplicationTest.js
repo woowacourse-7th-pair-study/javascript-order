@@ -34,15 +34,13 @@ const expectLogContains = (received, expects) => {
 
 const runExceptions = async ({ inputs = [], expectedErrorMessage = [] }) => {
   // given
-  const logSpy = getLogSpy();
   mockQuestions([...inputs]);
 
   // when
   const app = new App();
-  await app.run();
 
   // then
-  expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(expectedErrorMessage));
+  await expect(app.run()).rejects.toThrow(expectedErrorMessage);
 };
 
 const run = async ({ inputs = [], expected = [] }) => {
@@ -66,7 +64,7 @@ describe("주문 테스트", () => {
   test("예외 테스트", async () => {
     await runExceptions({
       inputs: ["피망(2개), 콜라(3개)"],
-      expected: ["[ERROR]:"],
+      expectedErrorMessage: "[ERROR]:",
     });
   });
 

@@ -11,6 +11,7 @@ export default class Delivery {
   constructor(orderReceipts) {
     this.#orderReceipts = orderReceipts;
     this.#totalAmount = 0;
+    this.#giftCount = 0;
     this.#menu = new Menu();
 
     this.#calculateTotalAmount();
@@ -38,9 +39,9 @@ export default class Delivery {
   }
 
   #giveGiftDumpling() {
-    this.#orderReceipts.forEach(({ name }) => {
+    this.#orderReceipts.forEach(({ name, count }) => {
       if (this.#menu.isMain(name)) {
-        this.#giftCount += 1;
+        this.#giftCount += count;
       }
     });
   }

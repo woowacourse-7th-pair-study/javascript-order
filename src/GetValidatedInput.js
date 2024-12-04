@@ -1,10 +1,8 @@
-import { Console } from "@woowacourse/mission-utils";
 import { ERROR_MESSAGE } from "./constant/message.js";
 import InputView from "./view/InputView.js";
 
 export default class GetValidatedInput {
   async menu(menu) {
-    // try {
     const input = await InputView.readMenuAsync();
     const parsedInput = input.split(",").map((menuString) => {
       const [menuName, menuCountString] = menuString.split("(");
@@ -15,9 +13,6 @@ export default class GetValidatedInput {
     this.#validateMenuInput(parsedInput, menu);
 
     return parsedInput;
-    // } catch (error) {
-    // Console.print(error.message);
-    // }
   }
 
   #validateMenuInput(input, menu) {
@@ -25,7 +20,8 @@ export default class GetValidatedInput {
     input.forEach(({ name, count }) => {
       if (!menu.has(name)) throw new Error(ERROR_MESSAGE.invalidMenuInput);
       if (Number.isNaN(count)) throw new Error(ERROR_MESSAGE.invalidMenuCount);
-      if (!Number.isInteger(count)) throw new Error(ERROR_MESSAGE.invalidMenuCount);
+      if (!Number.isInteger(count))
+        throw new Error(ERROR_MESSAGE.invalidMenuCount);
     });
     if (input.every(({ name }) => menu.isBeverage(name)))
       throw new Error(ERROR_MESSAGE.notOnlyBeverage);
